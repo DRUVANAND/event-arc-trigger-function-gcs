@@ -40,6 +40,7 @@ gcloud functions deploy saving-job-failures-bq \
   --trigger-service-account=cloud-functions-gcs-sa@engineer-cloud-nprod.iam.gserviceaccount.com
 ```
 **Upload the file to GCS and trigger the function**
+
 The input file containing job failures data is proposed in the project and the following path : event-arc-trigger-function/input_files/input_failures.json
 
 We copy this Json file to the GCS bucket event-arc-trigger-function :
