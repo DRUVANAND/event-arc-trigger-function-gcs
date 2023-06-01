@@ -15,7 +15,7 @@ def save_gcs_file_to_bq_function(cloud_event):
     bucket = data["bucket"]
     name = data["name"]
 
-    table_id = "gb-poc-373711.monitoring.job_failure"
+    table_id = "engineer-cloud-nprod.monitoring.job_failure"
 
     print(f"Event ID: {event_id}")
     print(f"Event type: {event_type}")
