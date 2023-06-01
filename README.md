@@ -17,9 +17,9 @@ gcloud components update
 Grant the pubsub.publisher role to the Cloud Storage service account:
 
 ```bash
-SERVICE_ACCOUNT="$(gsutil kms serviceaccount -p gb-poc-373711)"
+SERVICE_ACCOUNT="$(gsutil kms serviceaccount -p engineer-cloud-nprod)"
 
-gcloud projects add-iam-policy-binding gb-poc-373711 \
+gcloud projects add-iam-policy-binding engineer-cloud-nprod \
 --member="serviceAccount:${SERVICE_ACCOUNT}" \
 --role='roles/pubsub.publisher'
 ```
@@ -33,11 +33,11 @@ gcloud functions deploy saving-job-failures-bq \
   --runtime=python310 \
   --source=functions/saving_job_failures_bq \
   --entry-point=save_gcs_file_to_bq_function \
-  --run-service-account=sa-cloud-functions-dev@gb-poc-373711.iam.gserviceaccount.com \
+  --run-service-account=cloud-functions-gcs-sa@engineer-cloud-nprod.iam.gserviceaccount.com \
   --trigger-event-filters="type=google.cloud.storage.object.v1.finalized" \
   --trigger-event-filters="bucket=event-arc-trigger-function" \
   --trigger-location=europe-west1 \
-  --trigger-service-account=sa-cloud-functions-dev@gb-poc-373711.iam.gserviceaccount.com
+  --trigger-service-account=cloud-functions-gcs-sa@engineer-cloud-nprod.iam.gserviceaccount.com
 ```
 
 ## Deploy the function with Terraform and Cloud Build from local machine
