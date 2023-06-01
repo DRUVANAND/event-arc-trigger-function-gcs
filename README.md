@@ -35,7 +35,7 @@ gcloud functions deploy saving-job-failures-bq \
   --entry-point=save_gcs_file_to_bq_function \
   --run-service-account=cloud-functions-gcs-sa@engineer-cloud-nprod.iam.gserviceaccount.com \
   --trigger-event-filters="type=google.cloud.storage.object.v1.finalized" \
-  --trigger-event-filters="bucket=event-arc-trigger-function" \
+  --trigger-event-filters="bucket=dhruv-event-arc-trigger-function" \
   --trigger-location=europe-west1 \
   --trigger-service-account=cloud-functions-gcs-sa@engineer-cloud-nprod.iam.gserviceaccount.com
 ```
