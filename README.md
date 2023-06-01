@@ -39,6 +39,16 @@ gcloud functions deploy saving-job-failures-bq \
   --trigger-location=europe-west1 \
   --trigger-service-account=cloud-functions-gcs-sa@engineer-cloud-nprod.iam.gserviceaccount.com
 ```
+Upload the file to GCS and trigger the function
+The input file containing job failures data is proposed in the project and the following path : event-arc-trigger-function/input_files/input_failures.json
+
+We copy this Json file to the GCS bucket event-arc-trigger-function :
+
+{"featureName": "featurePSG","jobName": "jobPSG","pipelineStep": "pipelinePSG","inputElement": "inputElementPSG","exceptionType": "myExceptionType","stackTrace": "stackTracePSG","componentType": "componentTypePSG","dwhCreationDate": "2022-05-06 17:38:10","dagOperator": "dagOperatorPSG","additionalInfo": "info PSG"}
+{"featureName": "featureReal","jobName": "jobReal","pipelineStep": "pipelineReal","inputElement": "inputElementReal","exceptionType": "myExceptionType","stackTrace": "stackTraceReal","componentType": "componentTypeReal","dwhCreationDate": "2022-05-06 17:38:10","dagOperator": "dagOperatorReal","additionalInfo": "info Real"}
+Via the following command :
+
+gsutil cp input_files/input_failures.json gs://event-arc-trigger-function
 
 ## Deploy the function with Terraform and Cloud Build from local machine
 
